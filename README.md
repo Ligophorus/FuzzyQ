@@ -1,2 +1,2 @@
 # FuzzyQ
-Quantitative Approach to the Core-Satellite Paradigm
+Fuzzy Quantification of Common and Rare Species in Ecological Communities 
