@@ -1,4 +1,4 @@
-sortClus <- function(M, fq.obj) {
+sortClus <- function(M, fq) {
   if (length(dim(M)) != 2 || !(is.data.frame(M) || is.numeric(M)))
     stop("M is not a dataframe or a numeric matrix.")
   if ("fuzzyq" %in% class(fq.obj) == FALSE) stop("fq.obj is not a fuzzyq
@@ -9,6 +9,26 @@ sortClus <- function(M, fq.obj) {
   return(M)
 }
 
+#' Abundance Occupancy Plot
+#'
+#' Plots the abundance-occupancy relationship of species in a community categorized as common or rare by fuzzyq.
+#' @param fq a fuzzyq object returned by function fuzzyq
+#' @param col.rc a vector specifying two colors to be used for plot. Accepts any valid color specification in R.
+#' @param opacity number between 0 and 1 specificying the opacity of convex hulls groupping common and rare species.
+#' @param log.x logical flag indicating whether the x axis show be in log10 scale.
+#' @param log.y logical flag indicating whether the y axis show be in log10 scale.
+#' @param xLab a title for the x axis.
+#' @param yLab a title for the y axis
+#' @param ... arguments to be passed to graphical parameters in R.
+#' @return a scatter plot of occupancy vs. abundance of species. Convex hulls identify common and rare species.
+#' @examples
+#' data(antsA)
+#' # Data set of 46 ant species colelcted in 100 sites.
+#' FQAnts <- fuzzyq(antsA, sorting = TRUE)
+#' AOplot(FQAnts) # Plor with default values
+#' # Alternative with colors specified in Hex format, logarithmic axes and point format
+#' AOplot(FQAnts, col.rc = c("#013bad","#bd5f69"),
+#'        log.x = TRUE, log.y = TRUE, pch =16)
 AOplot <- function(fq, col.rc = c("red", "blue"), opacity = 0.1,
                   log.x = FALSE, log.y = FALSE,
                   xLab = "Fraction of sites occupied", yLab = "Mean abundance",

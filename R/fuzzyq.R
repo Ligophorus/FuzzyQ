@@ -1,3 +1,20 @@
+#' Fuzzy Quantification of Common and Rare Species in Ecological Communities
+#'
+#' Perform fuzzy clustering of each species based on its abundance and occupancy.
+#' @param M a Matrix or dataframe of species abundaces (columns). Each row represents a sites or sampling unit.
+#' @param nclus number of clusters into which species should be allocated. Default is 2 (common and rare).
+#' @param diss string specifiying the dissimilarity coefficient to be used. Default is "gower". The other options are "euclidean" and "manhattan".
+#' @param rm.absent a logical flag that indicates how to treat species absent in the community. If TRUE absences are considered as structural; absent species are removed from calculations. If FALSE (the default) absences are considered as random; absent species are included in the calculations.
+#' @param sorting logical flag: If TRUE (the default) species are sorted in the output by ascending silhouette width within each cluster, else species are arranged in the same order as in the input.
+#' @param keep.Diss logical flag specifying whether the species dissimilarity matrix shoudl be returned. The default is FALSE.
+#' @param daisy.args arguments to be passed to function daisy in package cluster.
+#' @param ... arguments to be passed to function fanny in package cluster.
+#' @return a list of class fuzzyq with the abundance occupancy of each species, clustering metrics for each species and the whole community, and the species dissimilary matrix (if diss = TRUE).
+#' @examples
+#' data(antsA)
+#' # Data set of 46 ant species colelcted in 100 sites.
+#' FQAnts <- fuzzyq(antsA, sorting = TRUE)
+
 fuzzyq <- function(M, nclus = 2, diss = "gower", rm.absent = FALSE,
                    sorting = TRUE, keep.Diss = FALSE, daisy.args, ...) {
   if (length(dim(M)) != 2 || !(is.data.frame(M) || is.numeric(M)))
