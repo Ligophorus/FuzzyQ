@@ -43,12 +43,12 @@ default is FALSE.}
 }
 \value{
 A list of class fuzzyq with the abundance occupancy of each species, clustering metrics for each species and the whole community, and the species dissimilary matrix (if diss = TRUE).
-\\describe{
-  \\item{A_O}{Abundance-occupancy information for each species}
-  \\item{Diss}{Object of class dist with pairwise dissimilarities among species based on A_O}
-  \\item{spp}{Clustering metrics per species: Cluster membership (where 0 and 1 denote allocation
+\describe{
+  \item{\code{A_O}}{Abundance-occupancy information for each species}
+  \item{\code{Diss}}{Object of class dist with pairwise dissimilarities among species based on A_O}
+  \item{\code{spp}}{Clustering metrics per species: Cluster membership (where 0 and 1 denote allocation
    to the rare and common category, respectively), Silhouette Widths and Commonness Indices)}
-  \\item{global}{Community level clustering metrics: Average silhouette widths per cluster and globally,
+  \item{\code{global}}{Community level clustering metrics: Average silhouette widths per cluster and globally,
    Mean commonness indices per cluster and Normalized Dunn's coefficient}
 }
 }
