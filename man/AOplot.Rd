@@ -16,12 +16,12 @@ AOplot(
 )
 }
 \arguments{
-\item{fq}{A list of class fuzzyq returned by FuzzyQ::fuzzyq}
+\item{fq}{A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}.}
 
 \item{col.rc}{A vector specifying two colors to be used to plot common and rare species.
-Accepts any valid color specification in R.}
+Accept any valid color specification in R.}
 
-\item{opacity}{Number in unit interval specificying the opacity of convex hulls groupping
+\item{opacity}{Number within [0,1] specificying the opacity of convex hulls grouping
 common and rare species.}
 
 \item{log.x}{Logical. Whether or not the x axis should be in log10 scale.}

@@ -1,11 +1,36 @@
+#' Sort Species by fuzzyq Clustering
+#'
+#' Sort species in a matrix or dataframe according to the clustering of a \code{fuzzyq} object. This is
+#'     useful prior to plotting Commonness Indices derived from bootstrap replicates.
+#' @param M A matrix or dataframe with information of species in columns.
+#' @param fq A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}.
+#' @return A matrix or dataframe with information of species in columns sorted according to
+#'    \code{fq$spp}.
+#' @examples
+#' data(antsA)
+#' FQAnts <- fuzzyq(antsA, sorting = TRUE)
+#' # Compute 95% confidence intervals for Commonness Indices of species:
+#' Nboot = 1e3
+#' BS.FQAnts <- fuzzyqBoot (antsA, Nboot, level='spp')
+#' BS.FQAnts <- fuzzyqCI(BS.FQAnts, fq=FQAnts)
+#' # Plot Commonness Indices and their respective confidence intervals:
+#' BS.FQAnts <- sortClus(BS.FQAnts, FQAnts)
+#' spp <- FQAnts$spp
+#' plot(spp[,3], cex.axis=0.8, xaxt='n', ylab="Commoness index",
+#'     ylim=c(0, max(BS.FQAnts)), xlab="Species",col=col.RC[spp[,1]+1],
+#'     pch=16, cex=0.8, las = 1)
+#' ebar.int <- seq_len(nrow(spp))
+#' arrows(ebar.int, BS.FQAnts["Lower", ], ebar.int, BS.FQAnts["Upper", ],
+#'       length= 0, col=col.RC[spp[,1]+1])
+#' axis(1, at=ebar.int, labels=rownames(spp), las=2, cex.axis=0.6)
 sortClus <- function(M, fq) {
   if (length(dim(M)) != 2 || !(is.data.frame(M) || is.numeric(M)))
     stop("M is not a dataframe or a numeric matrix.")
-  if ("fuzzyq" %in% class(fq.obj) == FALSE) stop("fq.obj is not a fuzzyq
+  if ("fuzzyq" %in% class(fq) == FALSE) stop("fq is not a fuzzyq
                                                   object.")
-  if (fq.obj$is.sorted == FALSE) stop("Common-rare species are not sorted in M.
+  if (fq$is.sorted == FALSE) stop("Common-rare species are not sorted in M.
                                       Run fuzzyq with sorting = TRUE")
-  M <- M[, match(rownames(fq.obj$spp), colnames(M))]
+  M <- M[, match(rownames(fq$spp), colnames(M))]
   return(M)
 }
 
@@ -13,10 +38,10 @@ sortClus <- function(M, fq) {
 #'
 #' Plots the abundance-occupancy relationship of species in a community categorized as common
 #'     or rare by fuzzyq.
-#' @param fq A list of class fuzzyq returned by FuzzyQ::fuzzyq
+#' @param fq A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}.
 #' @param col.rc A vector specifying two colors to be used to plot common and rare species.
-#'     Accepts any valid color specification in R.
-#' @param opacity Number in unit interval specificying the opacity of convex hulls groupping
+#'     Accept any valid color specification in R.
+#' @param opacity Number within [0,1] specificying the opacity of convex hulls grouping
 #'     common and rare species.
 #' @param log.x Logical. Whether or not the x axis should be in log10 scale.
 #' @param log.y Logical. Whether or not the y axis should be in log10 scale.

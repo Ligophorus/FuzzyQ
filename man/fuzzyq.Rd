@@ -16,47 +16,45 @@ fuzzyq(
 )
 }
 \arguments{
-\item{M}{A Matrix or dataframe of species abundaces (columns). Each row represents a sites or
-sampling unit.}
+\item{M}{A matrix or dataframe of species abundaces (columns). Each row represents a site.}
 
 \item{nclus}{Integer. Indicate the number of clusters into which species should be allocated.
 Default is 2 (common and rare).}
 
 \item{diss}{String. Specifiy the dissimilarity coefficient to be used. Default is "gower".
-The other options are "euclidean" and "manhattan".}
+See \code{\link[cluster]{daisy}} for other choices.}
 
-\item{rm.absent}{Logical. Indicate how to treat species absences in the community. If TRUE
-absences are considered as structural; absent species are removed from calculations. If
-FALSE (the default) absences are considered as random; absent species are included in the
-calculations.}
+\item{rm.absent}{Logical. Whether or not absent species are to be removed from the calculations.}
 
-\item{sorting}{Logical. If TRUE (the default) species are sorted in the output by ascending
+\item{sorting}{Logical. If \code{TRUE} (the default) species are sorted in the output by ascending
 silhouette widths within each cluster, else species are arranged in the same order as in the
 input matrix or dataframe.}
 
 \item{keep.Diss}{Logical. Whether or not the species dissimilarity matrix shoudl be returned. The
-default is FALSE.}
+default is \code{FALSE}.}
 
-\item{daisy.args}{Arguments to be passed to function daisy in package cluster.}
+\item{daisy.args}{Arguments to be passed to function \code{daisy} in package \code{cluster}.}
 
-\item{...}{Arguments to be passed to function fanny in package cluster.}
+\item{...}{Arguments to be passed to function \code{fanny} in package \code{cluster}.}
 }
 \value{
-A list of class fuzzyq with the abundance occupancy of each species, clustering metrics for each species and the whole community, and the species dissimilary matrix (if diss = TRUE).
-\describe{
-  \item{\code{A_O}}{Abundance-occupancy information for each species}
-  \item{\code{Diss}}{Object of class dist with pairwise dissimilarities among species based on A_O}
-  \item{\code{spp}}{Clustering metrics per species: Cluster membership (where 0 and 1 denote allocation
-   to the rare and common category, respectively), Silhouette Widths and Commonness Indices)}
-  \item{\code{global}}{Community level clustering metrics: Average silhouette widths per cluster and globally,
-   Mean commonness indices per cluster and Normalized Dunn's coefficient}
+A list of class \code{fuzzyq} containing the following:
+\itemize{
+  \item \code{A_O}{Abundance-occupancy information for each species.}
+  \item \code{Diss}{Object of class dist with pairwise dissimilarities among species based on A_O.
+  (only if \code{keep.Diss = TRUE)}.}
+  \item \code{spp}{Clustering metrics per species: Cluster membership (where 0 and 1 denote allocation
+   to the rare and common category, respectively), Silhouette Widths and Commonness Indices).}
+  \item \code{global}{Community level clustering metrics: Average silhouette widths per cluster and globally,
+   Mean commonness indices per cluster and Normalized Dunn's coefficient.}
 }
+See Also
+\code{fanny} and \code{daisy} within \code{cluster}
 }
 \description{
 Perform fuzzy clustering of each species based on its abundance and occupancy.
 }
 \examples{
 data(antsA)
-# Data set of 46 ant species colelcted in 100 sites.
 FQAnts <- fuzzyq(antsA, sorting = TRUE)
 }
