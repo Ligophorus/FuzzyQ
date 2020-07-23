@@ -16,34 +16,37 @@ AOplot(
 )
 }
 \arguments{
-\item{fq}{a fuzzyq object returned by function fuzzyq}
+\item{fq}{A list of class fuzzyq returned by FuzzyQ::fuzzyq}
 
-\item{col.rc}{a vector specifying two colors to be used for plot. Accepts any valid color specification in R.}
+\item{col.rc}{A vector specifying two colors to be used to plot common and rare species.
+Accepts any valid color specification in R.}
 
-\item{opacity}{number between 0 and 1 specificying the opacity of convex hulls groupping common and rare species.}
+\item{opacity}{Number in unit interval specificying the opacity of convex hulls groupping
+common and rare species.}
 
-\item{log.x}{logical flag indicating whether the x axis show be in log10 scale.}
+\item{log.x}{Logical. Whether or not the x axis should be in log10 scale.}
 
-\item{log.y}{logical flag indicating whether the y axis show be in log10 scale.}
+\item{log.y}{Logical. Whether or not the y axis should be in log10 scale.}
 
-\item{xLab}{a title for the x axis.}
+\item{xLab}{String. Title for the x axis.}
 
-\item{yLab}{a title for the y axis}
+\item{yLab}{String. Title for the y axis}
 
-\item{...}{arguments to be passed to graphical parameters in R.}
+\item{...}{Arguments to be passed to graphical parameters in R.}
 }
 \value{
-a scatter plot of occupancy vs. abundance of species. Convex hulls identify common and rare species.
+A scatter plot of occupancy vs. abundance of species. Convex hulls identify common
+    and rare species.
 }
 \description{
-Plots the abundance-occupancy relationship of species in a community categorized as common or rare by fuzzyq.
+Plots the abundance-occupancy relationship of species in a community categorized as common
+    or rare by fuzzyq.
 }
 \examples{
 data(antsA)
-# Data set of 46 ant species colelcted in 100 sites.
 FQAnts <- fuzzyq(antsA, sorting = TRUE)
 AOplot(FQAnts) # Plor with default values
-# Alternative with colors specified in Hex format, logarithmic axes and point format
+# Alternative with colors specified in Hex format, logarithmic axes and other point format
 AOplot(FQAnts, col.rc = c("#013bad","#bd5f69"),
-       log.x = TRUE, log.y = TRUE, pch =16)
+       log.x = TRUE, log.y = TRUE, pch = 4)
 }

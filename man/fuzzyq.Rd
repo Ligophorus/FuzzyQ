@@ -16,24 +16,41 @@ fuzzyq(
 )
 }
 \arguments{
-\item{M}{a Matrix or dataframe of species abundaces (columns). Each row represents a sites or sampling unit.}
+\item{M}{A Matrix or dataframe of species abundaces (columns). Each row represents a sites or
+sampling unit.}
 
-\item{nclus}{number of clusters into which species should be allocated. Default is 2 (common and rare).}
+\item{nclus}{Integer. Indicate the number of clusters into which species should be allocated.
+Default is 2 (common and rare).}
 
-\item{diss}{string specifiying the dissimilarity coefficient to be used. Default is "gower". The other options are "euclidean" and "manhattan".}
+\item{diss}{String. Specifiy the dissimilarity coefficient to be used. Default is "gower".
+The other options are "euclidean" and "manhattan".}
 
-\item{rm.absent}{a logical flag that indicates how to treat species absent in the community. If TRUE absences are considered as structural; absent species are removed from calculations. If FALSE (the default) absences are considered as random; absent species are included in the calculations.}
+\item{rm.absent}{Logical. Indicate how to treat species absences in the community. If TRUE
+absences are considered as structural; absent species are removed from calculations. If
+FALSE (the default) absences are considered as random; absent species are included in the
+calculations.}
 
-\item{sorting}{logical flag: If TRUE (the default) species are sorted in the output by ascending silhouette width within each cluster, else species are arranged in the same order as in the input.}
+\item{sorting}{Logical. If TRUE (the default) species are sorted in the output by ascending
+silhouette widths within each cluster, else species are arranged in the same order as in the
+input matrix or dataframe.}
 
-\item{keep.Diss}{logical flag specifying whether the species dissimilarity matrix shoudl be returned. The default is FALSE.}
+\item{keep.Diss}{Logical. Whether or not the species dissimilarity matrix shoudl be returned. The
+default is FALSE.}
 
-\item{daisy.args}{arguments to be passed to function daisy in package cluster.}
+\item{daisy.args}{Arguments to be passed to function daisy in package cluster.}
 
-\item{...}{arguments to be passed to function fanny in package cluster.}
+\item{...}{Arguments to be passed to function fanny in package cluster.}
 }
 \value{
-a list of class fuzzyq with the abundance occupancy of each species, clustering metrics for each species and the whole community, and the species dissimilary matrix (if diss = TRUE).
+A list of class fuzzyq with the abundance occupancy of each species, clustering metrics for each species and the whole community, and the species dissimilary matrix (if diss = TRUE).
+\describe{
+  \item{A_O}{Abundance-occupancy information for each species}
+  \item{Diss}{Object of class dist with pairwise dissimilarities among species based on A_O}
+  \item{spp}{Clustering metrics per species: Cluster membership (where 0 and 1 denote allocation
+   to the rare and common category, respectively), Silhouette Widths and Commonness Indices)}
+   \item{global}{Community level clustering metrics: Average silhouette widths per cluster and globally,
+   Mean commonness indices per cluster and Normalized Dunn's coefficient}
+}
 }
 \description{
 Perform fuzzy clustering of each species based on its abundance and occupancy.

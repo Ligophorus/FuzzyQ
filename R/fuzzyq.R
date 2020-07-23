@@ -1,15 +1,32 @@
 #' Fuzzy Quantification of Common and Rare Species in Ecological Communities
 #'
 #' Perform fuzzy clustering of each species based on its abundance and occupancy.
-#' @param M a Matrix or dataframe of species abundaces (columns). Each row represents a sites or sampling unit.
-#' @param nclus number of clusters into which species should be allocated. Default is 2 (common and rare).
-#' @param diss string specifiying the dissimilarity coefficient to be used. Default is "gower". The other options are "euclidean" and "manhattan".
-#' @param rm.absent a logical flag that indicates how to treat species absent in the community. If TRUE absences are considered as structural; absent species are removed from calculations. If FALSE (the default) absences are considered as random; absent species are included in the calculations.
-#' @param sorting logical flag: If TRUE (the default) species are sorted in the output by ascending silhouette width within each cluster, else species are arranged in the same order as in the input.
-#' @param keep.Diss logical flag specifying whether the species dissimilarity matrix shoudl be returned. The default is FALSE.
-#' @param daisy.args arguments to be passed to function daisy in package cluster.
-#' @param ... arguments to be passed to function fanny in package cluster.
-#' @return a list of class fuzzyq with the abundance occupancy of each species, clustering metrics for each species and the whole community, and the species dissimilary matrix (if diss = TRUE).
+#' @param M A Matrix or dataframe of species abundaces (columns). Each row represents a sites or
+#'     sampling unit.
+#' @param nclus Integer. Indicate the number of clusters into which species should be allocated.
+#'     Default is 2 (common and rare).
+#' @param diss String. Specifiy the dissimilarity coefficient to be used. Default is "gower".
+#'     The other options are "euclidean" and "manhattan".
+#' @param rm.absent Logical. Indicate how to treat species absences in the community. If TRUE
+#'     absences are considered as structural; absent species are removed from calculations. If
+#'     FALSE (the default) absences are considered as random; absent species are included in the
+#'     calculations.
+#' @param sorting Logical. If TRUE (the default) species are sorted in the output by ascending
+#'     silhouette widths within each cluster, else species are arranged in the same order as in the
+#'     input matrix or dataframe.
+#' @param keep.Diss Logical. Whether or not the species dissimilarity matrix shoudl be returned. The
+#'     default is FALSE.
+#' @param daisy.args Arguments to be passed to function daisy in package cluster.
+#' @param ... Arguments to be passed to function fanny in package cluster.
+#' @return A list of class fuzzyq with the abundance occupancy of each species, clustering metrics for each species and the whole community, and the species dissimilary matrix (if diss = TRUE).
+#' \describe{
+#'   \item{A_O}{Abundance-occupancy information for each species}
+#'   \item{Diss}{Object of class dist with pairwise dissimilarities among species based on A_O}
+#'   \item{spp}{Clustering metrics per species: Cluster membership (where 0 and 1 denote allocation
+#'    to the rare and common category, respectively), Silhouette Widths and Commonness Indices)}
+#'    \item{global}{Community level clustering metrics: Average silhouette widths per cluster and globally,
+#'    Mean commonness indices per cluster and Normalized Dunn's coefficient}
+#' }
 #' @examples
 #' data(antsA)
 #' # Data set of 46 ant species colelcted in 100 sites.

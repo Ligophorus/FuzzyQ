@@ -11,24 +11,27 @@ sortClus <- function(M, fq) {
 
 #' Abundance Occupancy Plot
 #'
-#' Plots the abundance-occupancy relationship of species in a community categorized as common or rare by fuzzyq.
-#' @param fq a fuzzyq object returned by function fuzzyq
-#' @param col.rc a vector specifying two colors to be used for plot. Accepts any valid color specification in R.
-#' @param opacity number between 0 and 1 specificying the opacity of convex hulls groupping common and rare species.
-#' @param log.x logical flag indicating whether the x axis show be in log10 scale.
-#' @param log.y logical flag indicating whether the y axis show be in log10 scale.
-#' @param xLab a title for the x axis.
-#' @param yLab a title for the y axis
-#' @param ... arguments to be passed to graphical parameters in R.
-#' @return a scatter plot of occupancy vs. abundance of species. Convex hulls identify common and rare species.
+#' Plots the abundance-occupancy relationship of species in a community categorized as common
+#'     or rare by fuzzyq.
+#' @param fq A list of class fuzzyq returned by FuzzyQ::fuzzyq
+#' @param col.rc A vector specifying two colors to be used to plot common and rare species.
+#'     Accepts any valid color specification in R.
+#' @param opacity Number in unit interval specificying the opacity of convex hulls groupping
+#'     common and rare species.
+#' @param log.x Logical. Whether or not the x axis should be in log10 scale.
+#' @param log.y Logical. Whether or not the y axis should be in log10 scale.
+#' @param xLab String. Title for the x axis.
+#' @param yLab String. Title for the y axis
+#' @param ... Arguments to be passed to graphical parameters in R.
+#' @return A scatter plot of occupancy vs. abundance of species. Convex hulls identify common
+#'     and rare species.
 #' @examples
 #' data(antsA)
-#' # Data set of 46 ant species colelcted in 100 sites.
 #' FQAnts <- fuzzyq(antsA, sorting = TRUE)
 #' AOplot(FQAnts) # Plor with default values
-#' # Alternative with colors specified in Hex format, logarithmic axes and point format
+#' # Alternative with colors specified in Hex format, logarithmic axes and other point format
 #' AOplot(FQAnts, col.rc = c("#013bad","#bd5f69"),
-#'        log.x = TRUE, log.y = TRUE, pch =16)
+#'        log.x = TRUE, log.y = TRUE, pch = 4)
 AOplot <- function(fq, col.rc = c("red", "blue"), opacity = 0.1,
                   log.x = FALSE, log.y = FALSE,
                   xLab = "Fraction of sites occupied", yLab = "Mean abundance",
