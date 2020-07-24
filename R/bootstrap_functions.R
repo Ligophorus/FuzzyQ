@@ -75,7 +75,7 @@ fuzzyqBoot <- function(M, N = 1e3, level="spp", rm.absent = FALSE,
      M <- t(sapply(M, function(x) x$global))
   }
  fq.bs <- list(fq.rep = M, level = level)
- return(fb.bs)
+ return(fq.bs)
 }
 #Percentile bootstrap CIs function
 .pctCI <- function(M, ci.level) {
