@@ -14,7 +14,7 @@
 #' @param daisy.args Arguments to be passed to function \code{daisy} in package \code{cluster}.
 #' @param ... Arguments to be passed to function \code{fanny} in package \code{cluster}.
 #' @return A list consisting of the following:
-#' \itemize{
+#' \describe{
 #'   \item \code{bs.rep}{matrix of estimated metrics. Replicates are arranged in rows. If \code{level = "spp"},
 #'     columns represent estimates of Commonness Indices per species. If \code{level = "global"}, columns
 #'     represent estimates of Community level clustering metrics: Average silhouette widths per cluster

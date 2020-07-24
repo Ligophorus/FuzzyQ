@@ -15,7 +15,7 @@
 #' @param daisy.args Arguments to be passed to function \code{daisy} in package \code{cluster}.
 #' @param ... Arguments to be passed to function \code{fanny} in package \code{cluster}.
 #' @return A list of class \code{fuzzyq} containing the following:
-#' \itemize{
+#' \describe{
 #'   \item \code{A_O}{Abundance-occupancy information for each species.}
 #'   \item \code{Diss}{Object of class dist with pairwise dissimilarities among species based on A_O.
 #'   (only if \code{keep.Diss = TRUE)}.}
