@@ -131,7 +131,7 @@ fuzzyqCI <- function(fq.bs, fq = NULL, method = "pct", c.level = 0.95) {
   M <- fq.bs$fq.rep
   if (!(is.data.frame(M) || is.numeric(M)))
     stop("M is not a dataframe or a numeric matrix.")
-  if ("fuzzyq" %in% class(fq) == FALSE)
+  if (!missing(fq) && "fuzzyq" %in% class(fq) == FALSE)
     stop("fq is not a fuzzyq object.")
   if (method %in% c("pct", "bc", "bca") == FALSE)
     stop("Wrong confidence interval specification.
