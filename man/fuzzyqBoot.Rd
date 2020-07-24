@@ -27,7 +27,7 @@ input matrix or dataframe.}
 }
 \value{
 A list consisting of the following:
-\itemize{
+\describe{
   \item \code{bs.rep}{matrix of estimated metrics. Replicates are arranged in rows. If \code{level = "spp"},
     columns represent estimates of Commonness Indices per species. If \code{level = "global"}, columns
     represent estimates of Community level clustering metrics: Average silhouette widths per cluster
