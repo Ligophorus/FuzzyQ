@@ -16,15 +16,15 @@
 #' @param ... Arguments to be passed to function \code{fanny} in package \code{cluster}.
 #' @return A list of class \code{fuzzyq} containing the following:
 #' \describe{
-#'   \item \code{A_O}{Abundance-occupancy information for each species.}
-#'   \item \code{Diss}{Object of class dist with pairwise dissimilarities among species based on A_O.
+#'   \item{\code{A_O}}{Abundance-occupancy information for each species.}
+#'   \item{\code{Diss}}{Object of class dist with pairwise dissimilarities among species based on A_O.
 #'   (only if \code{keep.Diss = TRUE)}.}
-#'   \item \code{spp}{Clustering metrics per species: Cluster membership (where 0 and 1 denote allocation
+#'   \item{\code{spp}}{Clustering metrics per species: Cluster membership (where 0 and 1 denote allocation
 #'    to the rare and common category, respectively), Silhouette Widths and Commonness Indices).}
-#'   \item \code{global}{Community level clustering metrics: Average silhouette widths per cluster and globally,
+#'   \item{\code{global}}{Community level clustering metrics: Average silhouette widths per cluster and globally,
 #'    Mean commonness indices per cluster and Normalized Dunn's coefficient.}
 #' }
-#' See Also
+#' @seealso
 #' \code{fanny} and \code{daisy} within \code{cluster}
 #' @examples
 #' data(antsA)

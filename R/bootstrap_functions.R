@@ -15,11 +15,11 @@
 #' @param ... Arguments to be passed to function \code{fanny} in package \code{cluster}.
 #' @return A list consisting of the following:
 #' \describe{
-#'   \item \code{bs.rep}{matrix of estimated metrics. Replicates are arranged in rows. If \code{level = "spp"},
+#'   \item{\code{bs.rep}}{Matrix of estimated metrics. Replicates are arranged in rows. If \code{level = "spp"},
 #'     columns represent estimates of Commonness Indices per species. If \code{level = "global"}, columns
 #'     represent estimates of Community level clustering metrics: Average silhouette widths per cluster
 #'     and globally, Mean commonness indices per cluster and Normalized Dunn's coefficient.}
-#'  \item \code{level}{Indicates whether the estimates are taken at species (\code{"spp"}) or
+#'  \item{\code{level}}{Flag indicating whether the estimates are taken at species (\code{"spp"}) or
 #'     community level (\code{"global"}).}
 #' }
 #' @examples
