@@ -43,8 +43,8 @@ Produce N replicates of the original site by species matrix or dataframe by taki
 \examples{
 data(antsA)
 FQAnts <- fuzzyq(antsA, sorting = TRUE)
-# Estimates of species Commonness Indices by species of 1,000 bootstrap replicates:
+# Compute species Commonness Indices of species of 1,000 bootstrap replicates:
 BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
-# Estimates of global metrics of 1,000 boostrap replicates:
+# Compute global metrics of 1,000 boostrap replicates:
 BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')
 }

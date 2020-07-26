@@ -6,7 +6,6 @@
 \usage{
 fuzzyq(
   M,
-  nclus = 2,
   diss = "gower",
   rm.absent = FALSE,
   sorting = TRUE,
@@ -17,9 +16,6 @@ fuzzyq(
 }
 \arguments{
 \item{M}{A matrix or dataframe of species abundaces (columns). Each row represents a site.}
-
-\item{nclus}{Integer. Indicate the number of clusters into which species should be allocated.
-Default is 2 (common and rare).}
 
 \item{diss}{String. Specifiy the dissimilarity coefficient to be used. Default is "gower".
 See \code{\link[cluster]{daisy}} for other choices.}
@@ -57,5 +53,5 @@ data(antsA)
 FQAnts <- fuzzyq(antsA, sorting = TRUE)
 }
 \seealso{
-\code{fanny} and \code{daisy} within \code{cluster}
+\code{\link[cluster]{fanny}} and \code{\link[cluster]{daisy}} within \code{cluster}
 }

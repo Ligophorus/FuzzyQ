@@ -7,7 +7,7 @@
 fuzzyqCI(fq.bs, fq = NULL, method = "pct", c.level = 0.95)
 }
 \arguments{
-\item{fq.bs}{A list returned by \code{fuzzyqBoot}.}
+\item{fq.bs}{A list returned by \code{FuzzyQ::fuzzyqBoot}.}
 
 \item{fq}{A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}. Required only if
 \code{method = "bc"} or \code{method = "bca"}.}
@@ -27,9 +27,14 @@ Computes confidence intervals of clustering metrics based on the bootstrap repli
 \examples{
 data(antsA)
 FQAnts <- fuzzyq(antsA, sorting = TRUE)
-# Estimates of species Commonness Indices by species of 1,000 bootstrap replicates:
+# Compute species Commonness Indices of species of 1,000 bootstrap replicates:
 BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
-# Estimates of global metrics of 1,000 boostrap replicates:
+# Compute 95 \% confidence intervals, percentile method, default values:
+BS.sppCI1 <- fuzzyqCI(BS.FQAnts)
+# Alternatively, 95 \% confidence intervals, bias corrected and accelerated method:
+BS.sppCI2 <- fuzzyqCI(BS.FQAnts, fq=FQAnts, method = "bca")
+# Compute global metrics of 1,000 boostrap replicates:
 BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')
-############# PENDING #################
+# Compute 95 \% confidence intervals, bias corrected and accelerated method:
+BS.globalCI <- fuzzyqCI(BS.global, fq=FQAnts, method = "bca")
 }

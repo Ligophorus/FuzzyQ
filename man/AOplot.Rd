@@ -21,7 +21,7 @@ AOplot(
 \item{col.rc}{A vector specifying two colors to be used to plot common and rare species.
 Accept any valid color specification in R.}
 
-\item{opacity}{Number within [0,1] specificying the opacity of convex hulls grouping
+\item{opacity}{Number within [0,1] specifying the opacity of convex hulls grouping
 common and rare species.}
 
 \item{log.x}{Logical. Whether or not the x axis should be in log10 scale.}
@@ -32,7 +32,7 @@ common and rare species.}
 
 \item{yLab}{String. Title for the y axis}
 
-\item{...}{Arguments to be passed to graphical parameters in R.}
+\item{...}{Other graphical parameters to be passed to \code{\link[base]{plot}}.}
 }
 \value{
 A scatter plot of occupancy vs. abundance of species. Convex hulls identify common
