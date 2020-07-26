@@ -25,9 +25,9 @@
 #' @examples
 #' data(antsA)
 #' FQAnts <- fuzzyq(antsA, sorting = TRUE)
-#' # Estimates of species Commonness Indices by species of 1,000 bootstrap replicates:
+#' # Compute species Commonness Indices of species of 1,000 bootstrap replicates:
 #' BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
-#' # Estimates of global metrics of 1,000 boostrap replicates:
+#' # Compute global metrics of 1,000 boostrap replicates:
 #' BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')
 fuzzyqBoot <- function(M, N = 1e3, level="spp", rm.absent = FALSE,
                          daisy.args, ...) {
@@ -112,7 +112,7 @@ fuzzyqBoot <- function(M, N = 1e3, level="spp", rm.absent = FALSE,
 #'
 #' Computes confidence intervals of clustering metrics based on the bootstrap replicates produced by
 #'     \code{fuzzyqBoot}.
-#' @param fq.bs A list returned by \code{fuzzyqBoot}.
+#' @param fq.bs A list returned by \code{FuzzyQ::fuzzyqBoot}.
 #' @param fq A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}. Required only if
 #'     \code{method = "bc"} or \code{method = "bca"}.
 #' @param method String. Specify the method to compute confidence intervals. Any of the following:
@@ -122,11 +122,16 @@ fuzzyqBoot <- function(M, N = 1e3, level="spp", rm.absent = FALSE,
 #' @examples
 #' data(antsA)
 #' FQAnts <- fuzzyq(antsA, sorting = TRUE)
-#' # Estimates of species Commonness Indices by species of 1,000 bootstrap replicates:
+#' # Compute species Commonness Indices of species of 1,000 bootstrap replicates:
 #' BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
-#' # Estimates of global metrics of 1,000 boostrap replicates:
+#' # Compute 95 % confidence intervals, percentile method, default values:
+#' BS.sppCI1 <- fuzzyqCI(BS.FQAnts)
+#' # Alternatively, 95 % confidence intervals, bias corrected and accelerated method:
+#' BS.sppCI2 <- fuzzyqCI(BS.FQAnts, fq=FQAnts, method = "bca")
+#' # Compute global metrics of 1,000 boostrap replicates:
 #' BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')
-#' ############# PENDING #################
+#' # Compute 95 % confidence intervals, bias corrected and accelerated method:
+#' BS.globalCI <- fuzzyqCI(BS.global, fq=FQAnts, method = "bca")
 fuzzyqCI <- function(fq.bs, fq = NULL, method = "pct", c.level = 0.95) {
   M <- fq.bs$fq.rep
   if (!(is.data.frame(M) || is.numeric(M)))

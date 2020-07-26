@@ -2,8 +2,6 @@
 #'
 #' Perform fuzzy clustering of each species based on its abundance and occupancy.
 #' @param M A matrix or dataframe of species abundaces (columns). Each row represents a site.
-#' @param nclus Integer. Indicate the number of clusters into which species should be allocated.
-#'     Default is 2 (common and rare).
 #' @param diss String. Specifiy the dissimilarity coefficient to be used. Default is "gower".
 #'     See \code{\link[cluster]{daisy}} for other choices.
 #' @param rm.absent Logical. Whether or not absent species are to be removed from the calculations.
@@ -25,12 +23,12 @@
 #'    Mean commonness indices per cluster and Normalized Dunn's coefficient.}
 #' }
 #' @seealso
-#' \code{fanny} and \code{daisy} within \code{cluster}
+#' \code{\link[cluster]{fanny}} and \code{\link[cluster]{daisy}} within \code{cluster}
 #' @examples
 #' data(antsA)
 #' FQAnts <- fuzzyq(antsA, sorting = TRUE)
 
-fuzzyq <- function(M, nclus = 2, diss = "gower", rm.absent = FALSE,
+fuzzyq <- function(M, diss = "gower", rm.absent = FALSE,
                    sorting = TRUE, keep.Diss = FALSE, daisy.args, ...) {
   if (length(dim(M)) != 2 || !(is.data.frame(M) || is.numeric(M)))
     stop("M is not a dataframe or a numeric matrix.")
@@ -46,14 +44,14 @@ fuzzyq <- function(M, nclus = 2, diss = "gower", rm.absent = FALSE,
     D <- do.call(cluster::daisy, c(list(x = A_O, metric = diss), daisy.args))
  # check that there are at sufficient no. of spp for fanny (k >= n/2-1)
   n <- attr(D, "Size")
-  if (nclus >= n / 2 - 1) {
+  if (n < 6) {
     warning("Insufficient number of spp. for fuzzy clustering. NULLs produced")
     sil.w <- NULL
     global <- NULL
     cr.fan <- list(A_O = A_O, spp = sil.w, global = global)
     if (keep.Diss == TRUE) cr.fan <- append(cr.fan, list(Diss = D), 1)
   } else {
-    fanclus <- cluster::fanny(D, k = nclus, keep.diss = FALSE,
+    fanclus <- cluster::fanny(D, k = 2, keep.diss = FALSE,
                               keep.data = FALSE, ...)
     sil.w <- fanclus$silinfo$widths[, c(1, 3)]
     # This part ensures that common and rare are consistently related to

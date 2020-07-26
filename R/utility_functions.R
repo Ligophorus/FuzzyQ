@@ -9,20 +9,21 @@
 #' @examples
 #' data(antsA)
 #' FQAnts <- fuzzyq(antsA, sorting = TRUE)
-#' # Compute 95% confidence intervals for Commonness Indices of species:
-#' Nboot = 1e3
-#' BS.FQAnts <- fuzzyqBoot (antsA, Nboot, level='spp')
-#' BS.FQAnts <- fuzzyqCI(BS.FQAnts, fq=FQAnts)
+#' # Compute species Commonness Indices of species of 1,000 bootstrap replicates:
+#' BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
+#' # Compute 95 % confidence intervals, percentile method, default values:
+#' BS.sppCI1 <- fuzzyqCI(BS.FQAnts)
 #' # Plot Commonness Indices and their respective confidence intervals:
-#' BS.FQAnts <- sortClus(BS.FQAnts, FQAnts)
+#' BS.sppCI1 <- sortClus(BS.sppCI1, FQAnts)
 #' spp <- FQAnts$spp
-#' plot(spp[,3], cex.axis=0.8, xaxt='n', ylab="Commoness index",
-#'     ylim=c(0, max(BS.FQAnts)), xlab="Species",col=col.RC[spp[,1]+1],
-#'     pch=16, cex=0.8, las = 1)
+#' col.RC <- c("brown2", "turquoise3") # two colors to plot rare and common species
+#' plot(spp[, 3], cex.axis = 0.8, xaxt= 'n', ylab = "Commoness index",
+#'     ylim = c(0, max(BS.sppCI1)), xlab = "Species", col = col.RC[spp[, 1] + 1],
+#'     pch = 16, cex = 0.8, las = 1)
 #' ebar.int <- seq_len(nrow(spp))
-#' arrows(ebar.int, BS.FQAnts["Lower", ], ebar.int, BS.FQAnts["Upper", ],
-#'       length= 0, col=col.RC[spp[,1]+1])
-#' axis(1, at=ebar.int, labels=rownames(spp), las=2, cex.axis=0.6)
+#' arrows(ebar.int, BS.sppCI1["Lower", ], ebar.int, BS.sppCI1["Upper", ],
+#'       length= 0, col = col.RC[spp[, 1] + 1])
+#' axis(1, at = ebar.int, labels = rownames(spp), las = 2, cex.axis = 0.6)
 sortClus <- function(M, fq) {
   if (length(dim(M)) != 2 || !(is.data.frame(M) || is.numeric(M)))
     stop("M is not a dataframe or a numeric matrix.")
@@ -41,13 +42,13 @@ sortClus <- function(M, fq) {
 #' @param fq A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}.
 #' @param col.rc A vector specifying two colors to be used to plot common and rare species.
 #'     Accept any valid color specification in R.
-#' @param opacity Number within [0,1] specificying the opacity of convex hulls grouping
+#' @param opacity Number within [0,1] specifying the opacity of convex hulls grouping
 #'     common and rare species.
 #' @param log.x Logical. Whether or not the x axis should be in log10 scale.
 #' @param log.y Logical. Whether or not the y axis should be in log10 scale.
 #' @param xLab String. Title for the x axis.
 #' @param yLab String. Title for the y axis
-#' @param ... Arguments to be passed to graphical parameters in R.
+#' @param ... Other graphical parameters to be passed to \code{\link[base]{plot}}.
 #' @return A scatter plot of occupancy vs. abundance of species. Convex hulls identify common
 #'     and rare species.
 #' @examples
