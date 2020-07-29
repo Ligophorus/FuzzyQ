@@ -36,6 +36,7 @@ fuzzyq <- function(M, diss = "gower", rm.absent = FALSE,
       length(which(colSums(M) == 0)) != 0)  M <- M[, -which(colSums(M) == 0)]
   if (length(dim(M)) != 2) stop("Insufficent data: only one species")
   abund <- colMeans(M, na.rm = TRUE)
+  names(abund) <- colnames(M)
   M[M > 0] <- 1
   occ  <- colMeans(M, na.rm = TRUE)
   A_O <- cbind(occ, abund)
