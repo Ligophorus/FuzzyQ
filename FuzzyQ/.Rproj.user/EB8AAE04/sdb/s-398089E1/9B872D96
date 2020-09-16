@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Helminth communities of so-iuy mullets from the Sea of Azov\n#'\n#' A dataset containing the abundance of 25 helminth species from 378 so-iuy\n#' mullets collected in the Sea of Azov and the Black Sea. Fish are grouped\n#' in 12 surveys\n#'\n#' @usage data(Azov)\n#'\n#' @format A data frame with 378 rows and 26 variables:\n#' \\describe{\n#'   \\item{sample}{survey identifier}\n#'   \\item{Ssp1}{abundance (no. individuals) of \\emph{Solostamenides} sp. 1}\n#'   \\item{...}{See source for full list of species and survey identifiers}\n#' }\n#' @references Llopis-Belenguer, C., Blasco-Costa, I., Balbuena, J.A.,\n#' Sarabeev, V., Stouffer, D.B. (2020), Native and invasive hosts play\n#' different roles in host-parasite networks. Ecography, 43: 559-568.\n#' doi:10.1111/ecog.04963\n#'\n#' @source\n#' Llopis-Belenguer, C. (2019) Replication data for: Native and invasive hosts\n#' play different roles in host-parasite networks, Harvard Dataverse,\n#' \\url{https://doi.org/10.7910/DVN/IWIKOL}\n#'\n#' @examples\n#' data(Azov)\n#' # Apply the FuzzyQ algorithm to each survey:\n#' fuzzyq.azov <- by(Azov[, -1], Azov[, \"sample\"], fuzzyq, rm.absent = FALSE)\n#' # Get cluster membership, silhouette widths and commonness indices\n#' # per sp. per survey:\n#' sppsilw.azov <- lapply(fuzzyq.azov, function(x) x$spp)\n#' # Get global silhouette withds, commonness indices and Dunn's normalized\n#' # partition coefficient per survey:\n#' global.azov <- t(sapply(fuzzyq.azov, function(x) x$global))\n#'\n\"Azov\"\n",
+    "created" : 1600253374400.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4251485072",
+    "id" : "9B872D96",
+    "lastKnownWriteTime" : 1600254878,
+    "last_content_update" : 1600254878310,
+    "path" : "F:/nuvol/FuzzyQ/FuzzyQ/R/Azov.R",
+    "project_path" : "R/Azov.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
