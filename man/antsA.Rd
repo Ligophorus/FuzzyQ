@@ -6,8 +6,8 @@
 \title{Ant species abundance from Arnan et el. (2011)}
 \format{A data frame with 99 rows (sites) and 46 variables (species abundances)}
 \source{
-Calatayud, J., Andivia, E., Escudero, A., Melián, C. J., Bernardo-Madrid,
-R., Stoffel, M., ... , Madrigal-González, J.(2019) Positive associations among
+Calatayud, J., Andivia, E., Escudero, A., Melian, C. J., Bernardo-Madrid,
+R., Stoffel, M., ... , Madrigal-Gonzalez, J.(2019) Positive associations among
 rare species and their persistence in ecological assemblages. Nature Ecology
 & Evolution, 4: 40-45. \url{https://doi.org/10.6084/m9.figshare.9906092}
 }
