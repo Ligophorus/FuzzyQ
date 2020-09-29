@@ -4,12 +4,14 @@
 \name{Azov}
 \alias{Azov}
 \title{Helminth communities of so-iuy mullets from the Sea of Azov}
-\format{A data frame with 378 rows and 26 variables:
+\format{
+A data frame with 378 rows and 26 variables:
 \describe{
   \item{sample}{survey identifier}
   \item{Ssp1}{abundance (no. individuals) of \emph{Solostamenides} sp. 1}
   \item{...}{See source for full list of species and survey identifiers}
-}}
+}
+}
 \source{
 Llopis-Belenguer, C. (2019) Replication data for: Native and invasive hosts
 play different roles in host-parasite networks, Harvard Dataverse,
