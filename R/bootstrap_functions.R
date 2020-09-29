@@ -11,7 +11,12 @@
 #' @param sorting Logical. If \code{TRUE} (the default) species are sorted in the output by ascending
 #'     silhouette widths within each cluster, else species are arranged in the same order as in the
 #'     input matrix or dataframe.
-#' @param daisy.args Arguments to be passed to function \code{daisy} in package \code{cluster}.
+#' @param std Logical. Whether or not the measurements of occupancy and abundance are to be standardized
+#'     before calculating the dissimilarities. Measurements are standardized for each variable (column),
+#'     by subtracting the variable's mean value and dividing by the variable's mean absolute deviation.
+#'     It only takes effect if \code{diss} is different from "gower".
+#' @param wgts an optional numeric vector of length 2. To be used if diss = "gower", specifying weights
+#'     for occupancy and abundance, respectively. Default is 1 each as in Gower's original formula.
 #' @param ... Arguments to be passed to function \code{fanny} in package \code{cluster}.
 #' @return A list consisting of the following:
 #' \describe{
@@ -29,8 +34,8 @@
 #' BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
 #' # Compute global metrics of 1,000 boostrap replicates:
 #' BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')
-fuzzyqBoot <- function(M, N = 1e3, level="spp", rm.absent = FALSE,
-                         daisy.args, ...) {
+fuzzyqBoot <- function(M, N = 1e3, level="spp",
+                      std = FALSE, wgts = c(1,1), ...) {
   if (length(dim(M)) != 2 || !(is.data.frame(M) || is.numeric(M)))
     stop("M is not a vector, a dataframe or a numeric matrix.")
   if (level %in% c("spp", "global") == FALSE)
@@ -51,11 +56,8 @@ fuzzyqBoot <- function(M, N = 1e3, level="spp", rm.absent = FALSE,
   }
   spp.names <- colnames(M)
   M <- bootSxSP(M)
-  if (missing(daisy.args))
-    M <- suppressWarnings(lapply(M, fuzzyq, rm.absent = FALSE,
-                                 keep.Diss = FALSE, sorting = FALSE, ...)) else
-    M <- suppressWarnings(lapply(M, fuzzyq, rm.absent = FALSE, sorting = FALSE,
-                                 daisy.args = dasiy.args, ...))
+  M <- suppressWarnings(lapply(M, fuzzyq, rm.absent = FALSE, keep.Diss = FALSE,
+                               sorting = FALSE, std = std, wgts = wgts,  ...))
   null.control <- sapply(M, function(x) is.null(x$spp))
   sum.nulls <- sum(null.control, na.rm = TRUE)
   if (sum.nulls == N) stop("All replicates contained too few species

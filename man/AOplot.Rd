@@ -45,7 +45,7 @@ Plots the abundance-occupancy relationship of species in a community categorized
 \examples{
 data(antsA)
 FQAnts <- fuzzyq(antsA, sorting = TRUE)
-AOplot(FQAnts) # Plot with default values
+AOplot(FQAnts) # Plor with default values
 # Alternative with colors specified in Hex format, logarithmic axes and other point format
 AOplot(FQAnts, col.rc = c("#013bad","#bd5f69"),
        log.x = TRUE, log.y = TRUE, pch = 4)

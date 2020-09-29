@@ -11,7 +11,7 @@
   \item{...}{See source for full list of species and survey identifiers}
 }}
 \source{
-Llopis-Belenguer, C. (2019) Replication Data for: Native and invasive hosts
+Llopis-Belenguer, C. (2019) Replication data for: Native and invasive hosts
 play different roles in host-parasite networks, Harvard Dataverse,
 \url{https://doi.org/10.7910/DVN/IWIKOL}
 }

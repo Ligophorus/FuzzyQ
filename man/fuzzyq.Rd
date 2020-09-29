@@ -10,7 +10,8 @@ fuzzyq(
   rm.absent = FALSE,
   sorting = TRUE,
   keep.Diss = FALSE,
-  daisy.args,
+  std = FALSE,
+  wgts = c(1, 1),
   ...
 )
 }
@@ -29,7 +30,13 @@ input matrix or dataframe.}
 \item{keep.Diss}{Logical. Whether or not the species dissimilarity matrix shoudl be returned. The
 default is \code{FALSE}.}
 
-\item{daisy.args}{Arguments to be passed to function \code{daisy} in package \code{cluster}.}
+\item{std}{Logical. Whether or not the measurements of occupancy and abundance are to be standardized
+before calculating the dissimilarities. Measurements are standardized for each variable (column),
+by subtracting the variable's mean value and dividing by the variable's mean absolute deviation.
+It only takes effect if \code{diss} is different from "gower".}
+
+\item{wgts}{an optional numeric vector of length 2. To be used if diss = "gower", specifying weights
+for occupancy and abundance, respectively. Default is 1 each as in Gower's original formula.}
 
 \item{...}{Arguments to be passed to function \code{fanny} in package \code{cluster}.}
 }

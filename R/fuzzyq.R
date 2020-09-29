@@ -10,7 +10,12 @@
 #'     input matrix or dataframe.
 #' @param keep.Diss Logical. Whether or not the species dissimilarity matrix shoudl be returned. The
 #'     default is \code{FALSE}.
-#' @param daisy.args Arguments to be passed to function \code{daisy} in package \code{cluster}.
+#' @param std Logical. Whether or not the measurements of occupancy and abundance are to be standardized
+#'     before calculating the dissimilarities. Measurements are standardized for each variable (column),
+#'     by subtracting the variable's mean value and dividing by the variable's mean absolute deviation.
+#'     It only takes effect if \code{diss} is different from "gower".
+#' @param wgts an optional numeric vector of length 2. To be used if diss = "gower", specifying weights
+#'     for occupancy and abundance, respectively. Default is 1 each as in Gower's original formula.
 #' @param ... Arguments to be passed to function \code{fanny} in package \code{cluster}.
 #' @return A list of class \code{fuzzyq} containing the following:
 #' \describe{
@@ -28,8 +33,8 @@
 #' data(antsA)
 #' FQAnts <- fuzzyq(antsA, sorting = TRUE)
 
-fuzzyq <- function(M, diss = "gower", rm.absent = FALSE,
-                   sorting = TRUE, keep.Diss = FALSE, daisy.args, ...) {
+fuzzyq <- function(M, diss = "gower", rm.absent = FALSE, sorting = TRUE,
+                   keep.Diss = FALSE, std = FALSE, wgts = c(1,1), ...) {
   if (length(dim(M)) != 2 || !(is.data.frame(M) || is.numeric(M)))
     stop("M is not a dataframe or a numeric matrix.")
   if (rm.absent == TRUE &&
@@ -41,9 +46,8 @@ fuzzyq <- function(M, diss = "gower", rm.absent = FALSE,
   occ  <- colMeans(M, na.rm = TRUE)
   A_O <- cbind(occ, abund)
   colnames(A_O) <- c("frq.occ", "m.abund")
-  if (missing(daisy.args)) D <- cluster::daisy(A_O, metric = diss) else
-    D <- do.call(cluster::daisy, c(list(x = A_O, metric = diss), daisy.args))
- # check that there are at sufficient no. of spp for fanny (k >= n/2-1)
+  D <- cluster::daisy(A_O, metric = diss, stand = std, weights = wgts)
+  # check that there are at sufficient no. of spp for fanny (k >= n/2-1)
   n <- attr(D, "Size")
   if (n < 6) {
     warning("Insufficient number of spp. for fuzzy clustering. NULLs produced")
@@ -65,7 +69,7 @@ fuzzyq <- function(M, diss = "gower", rm.absent = FALSE,
     # Ensure that "membership" reflects "commonness"
     if (fanclus$membership[which(rownames(fanclus$membership) == rar.tag), 1] <=
         fanclus$membership[which(rownames(fanclus$membership) == rar.tag), 2])
-    m <- 1 else m <- 2
+      m <- 1 else m <- 2
     # sort prior to cbind by membership
     sil.w <- sil.w[row.names(fanclus$membership), ]
     sil.w <- cbind(sil.w, fanclus$membership[, m])
@@ -85,7 +89,7 @@ fuzzyq <- function(M, diss = "gower", rm.absent = FALSE,
               mean(sil.w[sil.w$cluster == 1, 3]))
     global <- c(silw, memb, fanclus$coeff[2])
     names(global) <- c("silw.rar", "silw.com", "silw.all",
-                         "commI.rar", "commI.com", "N.Dunn")
+                       "commI.rar", "commI.com", "N.Dunn")
     cr.fan <- list(A_O = A_O, spp = sil.w, global = global)
     if (keep.Diss == TRUE) cr.fan <- append(cr.fan, list(Diss = D), 1)
   }
@@ -94,3 +98,4 @@ fuzzyq <- function(M, diss = "gower", rm.absent = FALSE,
   cr.fan$is.sorted <- is.sorted
   return(cr.fan)
 }
+
