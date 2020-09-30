@@ -4,7 +4,15 @@
 \alias{fuzzyqBoot}
 \title{Apply Fuzzy Quantification of Common and Rare Species to Bootstrap Replicates}
 \usage{
-fuzzyqBoot(M, N = 1000, level = "spp", std = FALSE, wgts = c(1, 1), ...)
+fuzzyqBoot(
+  M,
+  N = 1000,
+  level = "spp",
+  std = FALSE,
+  rm.absent = FALSE,
+  wgts = c(1, 1),
+  ...
+)
 }
 \arguments{
 \item{M}{A matrix or dataframe of species abundaces (columns). Each row represents a site.}
@@ -20,12 +28,12 @@ before calculating the dissimilarities. Measurements are standardized for each v
 by subtracting the variable's mean value and dividing by the variable's mean absolute deviation.
 It only takes effect if \code{diss} is different from "gower".}
 
+\item{rm.absent}{Logical. Whether or not absent species are to be removed from the calculations.}
+
 \item{wgts}{an optional numeric vector of length 2. To be used if diss = "gower", specifying weights
 for occupancy and abundance, respectively. Default is 1 each as in Gower's original formula.}
 
 \item{...}{Arguments to be passed to function \code{fanny} in package \code{cluster}.}
-
-\item{rm.absent}{Logical. Whether or not absent species are to be removed from the calculations.}
 
 \item{sorting}{Logical. If \code{TRUE} (the default) species are sorted in the output by ascending
 silhouette widths within each cluster, else species are arranged in the same order as in the

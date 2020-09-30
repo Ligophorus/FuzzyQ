@@ -34,8 +34,8 @@
 #' BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
 #' # Compute global metrics of 1,000 boostrap replicates:
 #' BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')
-fuzzyqBoot <- function(M, N = 1e3, level="spp",
-                      std = FALSE, wgts = c(1,1), ...) {
+fuzzyqBoot <- function(M, N = 1e3, level="spp", std = FALSE, rm.absent = FALSE,
+                       wgts = c(1,1), ...) {
   if (length(dim(M)) != 2 || !(is.data.frame(M) || is.numeric(M)))
     stop("M is not a vector, a dataframe or a numeric matrix.")
   if (level %in% c("spp", "global") == FALSE)
