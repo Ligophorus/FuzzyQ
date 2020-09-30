@@ -23,7 +23,7 @@ FQAnts <- fuzzyq(antsA, sorting = TRUE)
 
 Note that we set the argument `sorting = TRUE` to sort the species by cluster. This facilitates effective visualization of the rare and common species composition of the community. `FQAnts$A_O`, returns the AO information of each species. We use `AOplot` to show the AO relationship of the ant community (Fig. 1).
 
-```{r A_O plot, fig.cap="Relationship between mean abundance and number of sites occupied of 46 ant species", out.width = "100%", fig.align= "center"}
+```{r A_O plot, fig.cap="**Fig. 1.** Relationship between mean abundance and number of sites occupied of 46 ant species", out.width = "100%", fig.align= "center"}
 col.RC <- c("brown2", "turquoise3") 
 AOplot(FQAnts, col.RC, pch = 16)
 legend(0, 10.5, c("Rare", "Common"), col = col.RC, pch = 16)
@@ -52,7 +52,7 @@ BS.FQAnts <- sortClus(BS.FQAnts, FQAnts)
 
 Figure 2 shows the commonness indices and confidence intervals of each species in our dataset.
 
-```{r commonness plot, fig.cap="Commonness indices and 95\\% bootstrap confidence intervals of 46 ant species generated with a fuzzy clustering algorithm. The horizontal line indicates a commonness index of 0.5", fig.align= "center"}
+```{r commonness plot, fig.cap="**Fig.2.** Commonness indices and 95\\% bootstrap confidence intervals of 46 ant species generated with a fuzzy clustering algorithm. The horizontal line indicates a commonness index of 0.5", fig.align= "center"}
 spp <- FQAnts$spp
 plot(spp[,3], cex.axis=0.8, xaxt='n', ylab="Commoness index",
      ylim=c(0, max(BS.FQAnts)), xlab="Species",col=col.RC[spp[,1]+1],
@@ -66,7 +66,7 @@ axis(1, at=ebar.int, labels=rownames(spp), las=2, cex.axis=0.6)
 
 `FQAnst$spp` also provides the silhouette value of each species (`sil_width`). Silhouettes are measures of how similar abundance and occupancy of each species are to its own cluster relative to species in the other cluster. They can be displayed as a barplot thet informs us about the nature of the community in terms of the distribution of common and rare species (Fig. 3).
 
-```{r silhouette plot, fig.cap="Silhouettes of 46 ant species generated with a fuzzy clustering algorithm", out.width = "100%", fig.align= "center"}
+```{r silhouette plot, fig.cap="**Fig. 3.**Silhouettes of 46 ant species generated with a fuzzy clustering algorithm", out.width = "100%", fig.align= "center"}
 barplot(spp[,2], names.arg=rownames(spp), 
         col=col.RC[spp[,1]+1],
         las=2, cex.names=0.6, xlab="Species", ylab="Silhouette width", 
@@ -82,7 +82,7 @@ We can assess the strength of each cluster by computing the average silhouette w
  BS.global <- fuzzyqBoot (antsA, Nboot, level='global')
 ``` 
 
-```{r global boxplots, fig.cap="Global clustering parameters of a community of 46 ant species generared with a fuzzy clustering algortihm. Boxplots represent the variation of 1,000 bootstrap replicates. Points correspond to the estimates of the database. a) Average silhouette widths of rare and common species and globally; b) Average Commonness Indices of rare and common species; c) Normalized Dunn's index", out.width = "100%", fig.align= "center"}
+```{r global boxplots, fig.cap="**Fig. 4.** Global clustering parameters of a community of 46 ant species generared with a fuzzy clustering algortihm. Boxplots represent the variation of 1,000 bootstrap replicates. Points correspond to the estimates of the database. a) Average silhouette widths of rare and common species and globally; b) Average Commonness Indices of rare and common species; c) Normalized Dunn's index", out.width = "100%", fig.align= "center"}
 par(mar=c(2, 4.6, 1, 2))
 layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE), widths=c(2.75,1.25),
        heights=c(1,1))
