@@ -17,7 +17,7 @@
 #' @source
 #' Llopis-Belenguer, C. (2019) Replication data for: Native and invasive hosts
 #'     play different roles in host-parasite networks, Harvard Dataverse,
-#'     \url{htpps://doi.org/10.7910/DVN/IWIKOL}.
+#'     \url{https://doi.org/10.7910/DVN/IWIKOL}.
 #'
 #' @examples
 #' data(Azov)

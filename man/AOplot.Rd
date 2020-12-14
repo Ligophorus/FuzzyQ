@@ -18,11 +18,11 @@ AOplot(
 \arguments{
 \item{fq}{A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}.}
 
-\item{col.rc}{A vector specifying two colors to be used to plot common and rare species.
-Accept any valid color specification in R.}
+\item{col.rc}{A vector specifying two colors to be used to plot common and
+rare species. Accept any valid color specification in R.}
 
-\item{opacity}{Number within [0,1] specifying the opacity of convex hulls grouping
-common and rare species.}
+\item{opacity}{Number within [0,1] specifying the opacity of convex hulls
+grouping common and rare species.}
 
 \item{log.x}{Logical. Whether or not the x axis should be in log10 scale.}
 
@@ -30,23 +30,26 @@ common and rare species.}
 
 \item{xLab}{String. Title for the x axis.}
 
-\item{yLab}{String. Title for the y axis}
+\item{yLab}{String. Title for the y axis.}
 
-\item{...}{Other graphical parameters to be passed to \code{\link[base]{plot}}.}
+\item{...}{Other graphical parameters to be passed to
+\code{\link[graphics]{plot}}.}
 }
 \value{
-A scatter plot of occupancy vs. abundance of species. Convex hulls identify common
-    and rare species.
+A scatter plot of occupancy vs. abundance of species. Convex hulls
+  enclose common and rare species.
 }
 \description{
-Plots the abundance-occupancy relationship of species in a community categorized as common
-    or rare by fuzzyq.
+Plots the abundance-occupancy relationship of species in a community
+categorized as common or rare by fuzzyq.
 }
 \examples{
 data(antsA)
 FQAnts <- fuzzyq(antsA, sorting = TRUE)
 AOplot(FQAnts) # Plor with default values
-# Alternative with colors specified in Hex format, logarithmic axes and other point format
+
+# Alternative with colors specified in Hex code, logarithmic axes and other
+# point format
 AOplot(FQAnts, col.rc = c("#013bad","#bd5f69"),
        log.x = TRUE, log.y = TRUE, pch = 4)
 }

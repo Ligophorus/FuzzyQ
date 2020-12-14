@@ -15,50 +15,55 @@ fuzzyqBoot(
 )
 }
 \arguments{
-\item{M}{A matrix or dataframe of species abundaces (columns). Each row represents a site.}
+\item{M}{A matrix or dataframe of species abundaces (columns). Each row
+represents a site.}
 
-\item{N}{Integer. Number of bootsrap replicates desired. Default is 1000.}
+\item{N}{Integer. Number of bootstrap replicates desired. Default is 1,000.}
 
-\item{level}{String. Specifiy the type of metrics to be computed for each bootstrap replicate.
-Either \code{"spp"} or \code{"global"}, corresponding to species or community-level metrics,
-respectively.}
+\item{level}{String. Specifiy the type of metrics to be computed for each
+bootstrap replicate. Either \code{"spp"} or \code{"global"}, corresponding
+to species or community-level metrics, respectively.}
 
-\item{std}{Logical. Whether or not the measurements of occupancy and abundance are to be standardized
-before calculating the dissimilarities. Measurements are standardized for each variable (column),
-by subtracting the variable's mean value and dividing by the variable's mean absolute deviation.
-It only takes effect if \code{diss} is different from "gower".}
+\item{std}{Logical. Whether or not the measurements of occupancy and
+abundance are to be standardized before calculating the dissimilarities.
+Measurements are standardized for each variable (column), by subtracting
+the variable's mean value and dividing by the variable's mean absolute
+deviation. It only takes effect if \code{diss} is different from "gower".}
 
-\item{rm.absent}{Logical. Whether or not absent species are to be removed from the calculations.}
+\item{rm.absent}{Logical. Whether or not absent species are to be removed
+from the calculations.}
 
-\item{wgts}{an optional numeric vector of length 2. To be used if diss = "gower", specifying weights
-for occupancy and abundance, respectively. Default is 1 each as in Gower's original formula.}
+\item{wgts}{an optional numeric vector of length 2. To be used if \code{diss
+= "gower"}, specifying weights for occupancy and abundance, respectively.
+Default is \code{c(1, 1)} as in Gower's original formula.}
 
-\item{...}{Arguments to be passed to function \code{fanny} in package \code{cluster}.}
-
-\item{sorting}{Logical. If \code{TRUE} (the default) species are sorted in the output by ascending
-silhouette widths within each cluster, else species are arranged in the same order as in the
-input matrix or dataframe.}
+\item{...}{Arguments to be passed to function \code{fanny} in package
+\code{cluster}.}
 }
 \value{
-A list consisting of the following:
-\describe{
-  \item{\code{bs.rep}}{Matrix of estimated metrics. Replicates are arranged in rows. If \code{level = "spp"},
-    columns represent estimates of Commonness Indices per species. If \code{level = "global"}, columns
-    represent estimates of Community level clustering metrics: Average silhouette widths per cluster
-    and globally, Mean commonness indices per cluster and Normalized Dunn's coefficient.}
- \item{\code{level}}{Flag indicating whether the estimates are taken at species (\code{"spp"}) or
-    community level (\code{"global"}).}
-}
+A list consisting of the following: \describe{
+  \item{\code{bs.rep}}{Matrix of estimated metrics. Replicates are arranged
+  in rows. If \code{level = "spp"}, columns represent estimates of Commonness
+  Indices per species. If \code{level = "global"}, columns represent
+  estimates of community-level clustering metrics: Average silhouette widths
+  per cluster and globally, Mean commonness indices per cluster and
+  Normalized Dunn's coefficient.} \item{\code{level}}{Flag indicating whether
+  the estimates are taken at species (\code{"spp"}) or community level
+  (\code{"global"}).} }
 }
 \description{
-Produce N replicates of the original site by species matrix or dataframe by taking bootstrap
-    samples of sites (rows) and apply \code{fuzzyq} to each replicate.
+Produce N replicates of the original site by species matrix or dataframe by
+taking bootstrap samples of sites (rows) and apply \code{fuzzyq} to each
+replicate.
 }
 \examples{
 data(antsA)
 FQAnts <- fuzzyq(antsA, sorting = TRUE)
-# Compute species Commonness Indices of species of 1,000 bootstrap replicates:
-BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
+
+# Compute species Commonness Indices of species of 1,000 bootstrap
+# replicates:
+\dontrun{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
+
 # Compute global metrics of 1,000 boostrap replicates:
-BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')
+\dontrun{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
 }

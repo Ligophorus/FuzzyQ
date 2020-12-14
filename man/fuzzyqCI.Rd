@@ -9,32 +9,42 @@ fuzzyqCI(fq.bs, fq = NULL, method = "pct", c.level = 0.95)
 \arguments{
 \item{fq.bs}{A list returned by \code{FuzzyQ::fuzzyqBoot}.}
 
-\item{fq}{A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}. Required only if
-\code{method = "bc"} or \code{method = "bca"}.}
+\item{fq}{A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}.
+Required only if \code{method = "bc"} or \code{method = "bca"}.}
 
-\item{method}{String. Specify the method to compute confidence intervals. Any of the following:
-"pct" (percentile), "bc" (bias corrected), "bca" (bias corrected and accelerated).}
+\item{method}{String. Specify the method to compute confidence intervals. Any
+of the following: "pct" (percentile, the default), "bc" (bias corrected),
+"bca" (bias corrected and accelerated).}
 
-\item{c.level}{Number within [0,1]. Specify the confidence interval level. Default is 0.95.}
+\item{c.level}{Number within [0,1]. Specify the confidence interval level.
+Default is 0.95.}
 }
 \value{
-A matrix with upper and lower confidence interval limits of clustering metrics.
+A matrix with upper and lower confidence interval limits of
+  clustering metrics.
 }
 \description{
-Computes confidence intervals of clustering metrics based on the bootstrap replicates produced by
-    \code{fuzzyqBoot}.
+Computes confidence intervals of clustering metrics based on the bootstrap
+replicates produced by \code{fuzzyqBoot}.
 }
 \examples{
 data(antsA)
 FQAnts <- fuzzyq(antsA, sorting = TRUE)
-# Compute species Commonness Indices of species of 1,000 bootstrap replicates:
-BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
+
+# Compute species Commonness Indices of species of 1,000 bootstrap
+# replicates:
+\dontrun{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
+
 # Compute 95 \% confidence intervals, percentile method, default values:
-BS.sppCI1 <- fuzzyqCI(BS.FQAnts)
-# Alternatively, 95 \% confidence intervals, bias corrected and accelerated method:
-BS.sppCI2 <- fuzzyqCI(BS.FQAnts, fq=FQAnts, method = "bca")
+\dontrun{BS.sppCI1 <- fuzzyqCI(BS.FQAnts)}
+
+# Alternatively, 95 \% confidence intervals, bias corrected and accelerated
+# method:
+\dontrun{BS.sppCI2 <- fuzzyqCI(BS.FQAnts, fq=FQAnts, method = "bca")}
+
 # Compute global metrics of 1,000 boostrap replicates:
-BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')
+\dontrun{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
+
 # Compute 95 \% confidence intervals, bias corrected and accelerated method:
-BS.globalCI <- fuzzyqCI(BS.global, fq=FQAnts, method = "bca")
+\dontrun{BS.globalCI <- fuzzyqCI(BS.global, fq=FQAnts, method = "bca")}
 }

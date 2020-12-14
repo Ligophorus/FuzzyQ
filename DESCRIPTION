@@ -1,21 +1,22 @@
 Package: FuzzyQ
 Version: 0.1.0
-Date: 2020-07-22
+Date: 2020-12-10
 Title: Fuzzy Quantification of Common and Rare Species in Ecological Communities
-Description: Fuzzy classification of species in an ecological community as
-    common or rare based on their abundance-occupancy relationships. Functions
-    to compute confidence intervals of classification metrics and plot results
-    are also included
-Author: Juan Antonio Balbuena <j.a.balbuena@uv.es>,
-    Clara Monlleó_Borrull <claramonlle@gmail.com>, 
-    Cristina Llopis-Belenguer <cristina.llopis.belenguer@gmail.com>,
-    Isabel Blasco-Costa <isa.blasco.costa@gmail.com>,
-    Volodimir Sarabeev <volodimir.sarabeev@gmail.com>,
-    Serge Morand <serge.morand@cirad.fr>
-Maintainer: Juan Antonio Balbuena <j.a.balbuena@uv.es>
-Depends: R (>= 3.0.0)
-Imports: cluster
-License: MIT + file LICENSE
+Description: This package performs fuzzy classification of species in an ecological
+    community as common or rare based on their abundance and occupancy. It also
+    includes functions to compute confidence intervals of classification metrics and
+    plot results.
+Author: Juan A. Balbuena,
+    Clara Monlleó-Borrull, 
+    Cristina Llopis-Belenguer,
+    Isabel Blasco-Costa,
+    Volodimir Sarabeev,
+    Serge Morand
+Maintainer: Juan A. Balbuena <j.a.balbuena@uv.es>
+Depends: R (>= 3.5.0)
+Imports:
+    cluster
+License: GPL-3
 Encoding: UTF-8
 NeedsCompilation: no
 LazyData: true

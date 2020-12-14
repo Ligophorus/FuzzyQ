@@ -1,39 +1,46 @@
 #' Apply Fuzzy Quantification of Common and Rare Species to Bootstrap Replicates
 #'
-#' Produce N replicates of the original site by species matrix or dataframe by taking bootstrap
-#'     samples of sites (rows) and apply \code{fuzzyq} to each replicate.
-#' @param M A matrix or dataframe of species abundaces (columns). Each row represents a site.
-#' @param N Integer. Number of bootsrap replicates desired. Default is 1000.
-#' @param level String. Specifiy the type of metrics to be computed for each bootstrap replicate.
-#'     Either \code{"spp"} or \code{"global"}, corresponding to species or community-level metrics,
-#'     respectively.
-#' @param rm.absent Logical. Whether or not absent species are to be removed from the calculations.
-#' @param sorting Logical. If \code{TRUE} (the default) species are sorted in the output by ascending
-#'     silhouette widths within each cluster, else species are arranged in the same order as in the
-#'     input matrix or dataframe.
-#' @param std Logical. Whether or not the measurements of occupancy and abundance are to be standardized
-#'     before calculating the dissimilarities. Measurements are standardized for each variable (column),
-#'     by subtracting the variable's mean value and dividing by the variable's mean absolute deviation.
-#'     It only takes effect if \code{diss} is different from "gower".
-#' @param wgts an optional numeric vector of length 2. To be used if diss = "gower", specifying weights
-#'     for occupancy and abundance, respectively. Default is 1 each as in Gower's original formula.
-#' @param ... Arguments to be passed to function \code{fanny} in package \code{cluster}.
-#' @return A list consisting of the following:
-#' \describe{
-#'   \item{\code{bs.rep}}{Matrix of estimated metrics. Replicates are arranged in rows. If \code{level = "spp"},
-#'     columns represent estimates of Commonness Indices per species. If \code{level = "global"}, columns
-#'     represent estimates of Community level clustering metrics: Average silhouette widths per cluster
-#'     and globally, Mean commonness indices per cluster and Normalized Dunn's coefficient.}
-#'  \item{\code{level}}{Flag indicating whether the estimates are taken at species (\code{"spp"}) or
-#'     community level (\code{"global"}).}
-#' }
+#' Produce N replicates of the original site by species matrix or dataframe by
+#' taking bootstrap samples of sites (rows) and apply \code{fuzzyq} to each
+#' replicate.
+#' @param M A matrix or dataframe of species abundaces (columns). Each row
+#'   represents a site.
+#' @param N Integer. Number of bootstrap replicates desired. Default is 1,000.
+#' @param level String. Specifiy the type of metrics to be computed for each
+#'   bootstrap replicate. Either \code{"spp"} or \code{"global"}, corresponding
+#'   to species or community-level metrics, respectively.
+#' @param rm.absent Logical. Whether or not absent species are to be removed
+#'   from the calculations.
+#' @param std Logical. Whether or not the measurements of occupancy and
+#'   abundance are to be standardized before calculating the dissimilarities.
+#'   Measurements are standardized for each variable (column), by subtracting
+#'   the variable's mean value and dividing by the variable's mean absolute
+#'   deviation. It only takes effect if \code{diss} is different from "gower".
+#' @param wgts an optional numeric vector of length 2. To be used if \code{diss
+#'   = "gower"}, specifying weights for occupancy and abundance, respectively.
+#'   Default is \code{c(1, 1)} as in Gower's original formula.
+#' @param ... Arguments to be passed to function \code{fanny} in package
+#'   \code{cluster}.
+#' @export
+#' @return A list consisting of the following: \describe{
+#'   \item{\code{bs.rep}}{Matrix of estimated metrics. Replicates are arranged
+#'   in rows. If \code{level = "spp"}, columns represent estimates of Commonness
+#'   Indices per species. If \code{level = "global"}, columns represent
+#'   estimates of community-level clustering metrics: Average silhouette widths
+#'   per cluster and globally, Mean commonness indices per cluster and
+#'   Normalized Dunn's coefficient.} \item{\code{level}}{Flag indicating whether
+#'   the estimates are taken at species (\code{"spp"}) or community level
+#'   (\code{"global"}).} }
 #' @examples
 #' data(antsA)
 #' FQAnts <- fuzzyq(antsA, sorting = TRUE)
-#' # Compute species Commonness Indices of species of 1,000 bootstrap replicates:
-#' BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
+#'
+#' # Compute species Commonness Indices of species of 1,000 bootstrap
+#' # replicates:
+#' \dontrun{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
+#'
 #' # Compute global metrics of 1,000 boostrap replicates:
-#' BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')
+#' \dontrun{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
 fuzzyqBoot <- function(M, N = 1e3, level="spp", std = FALSE, rm.absent = FALSE,
                        wgts = c(1,1), ...) {
   if (length(dim(M)) != 2 || !(is.data.frame(M) || is.numeric(M)))
@@ -112,28 +119,39 @@ fuzzyqBoot <- function(M, N = 1e3, level="spp", std = FALSE, rm.absent = FALSE,
 }
 #' Compute Confidence Intervals of Clustering Metrics
 #'
-#' Computes confidence intervals of clustering metrics based on the bootstrap replicates produced by
-#'     \code{fuzzyqBoot}.
+#' Computes confidence intervals of clustering metrics based on the bootstrap
+#' replicates produced by \code{fuzzyqBoot}.
 #' @param fq.bs A list returned by \code{FuzzyQ::fuzzyqBoot}.
-#' @param fq A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}. Required only if
-#'     \code{method = "bc"} or \code{method = "bca"}.
-#' @param method String. Specify the method to compute confidence intervals. Any of the following:
-#'     "pct" (percentile), "bc" (bias corrected), "bca" (bias corrected and accelerated).
-#' @param c.level Number within [0,1]. Specify the confidence interval level. Default is 0.95.
-#' @return A matrix with upper and lower confidence interval limits of clustering metrics.
+#' @param fq A list of class \code{fuzzyq} returned by \code{FuzzyQ::fuzzyq}.
+#'   Required only if \code{method = "bc"} or \code{method = "bca"}.
+#' @param method String. Specify the method to compute confidence intervals. Any
+#'   of the following: "pct" (percentile, the default), "bc" (bias corrected),
+#'   "bca" (bias corrected and accelerated).
+#' @param c.level Number within [0,1]. Specify the confidence interval level.
+#'   Default is 0.95.
+#' @export
+#' @return A matrix with upper and lower confidence interval limits of
+#'   clustering metrics.
 #' @examples
 #' data(antsA)
 #' FQAnts <- fuzzyq(antsA, sorting = TRUE)
-#' # Compute species Commonness Indices of species of 1,000 bootstrap replicates:
-#' BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')
+#'
+#' # Compute species Commonness Indices of species of 1,000 bootstrap
+#' # replicates:
+#' \dontrun{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
+#'
 #' # Compute 95 % confidence intervals, percentile method, default values:
-#' BS.sppCI1 <- fuzzyqCI(BS.FQAnts)
-#' # Alternatively, 95 % confidence intervals, bias corrected and accelerated method:
-#' BS.sppCI2 <- fuzzyqCI(BS.FQAnts, fq=FQAnts, method = "bca")
+#' \dontrun{BS.sppCI1 <- fuzzyqCI(BS.FQAnts)}
+#'
+#' # Alternatively, 95 % confidence intervals, bias corrected and accelerated
+#' # method:
+#' \dontrun{BS.sppCI2 <- fuzzyqCI(BS.FQAnts, fq=FQAnts, method = "bca")}
+#'
 #' # Compute global metrics of 1,000 boostrap replicates:
-#' BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')
+#' \dontrun{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
+#'
 #' # Compute 95 % confidence intervals, bias corrected and accelerated method:
-#' BS.globalCI <- fuzzyqCI(BS.global, fq=FQAnts, method = "bca")
+#' \dontrun{BS.globalCI <- fuzzyqCI(BS.global, fq=FQAnts, method = "bca")}
 fuzzyqCI <- function(fq.bs, fq = NULL, method = "pct", c.level = 0.95) {
   M <- fq.bs$fq.rep
   if (!(is.data.frame(M) || is.numeric(M)))

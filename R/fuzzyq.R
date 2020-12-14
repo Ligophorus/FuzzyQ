@@ -1,34 +1,42 @@
 #' Fuzzy Quantification of Common and Rare Species in Ecological Communities
 #'
-#' Perform fuzzy clustering of each species based on its abundance and occupancy.
-#' @param M A matrix or dataframe of species abundaces (columns). Each row represents a site.
-#' @param diss String. Specifiy the dissimilarity coefficient to be used. Default is "gower".
-#'     See \code{\link[cluster]{daisy}} for other choices.
-#' @param rm.absent Logical. Whether or not absent species are to be removed from the calculations.
-#' @param sorting Logical. If \code{TRUE} (the default) species are sorted in the output by ascending
-#'     silhouette widths within each cluster, else species are arranged in the same order as in the
-#'     input matrix or dataframe.
-#' @param keep.Diss Logical. Whether or not the species dissimilarity matrix shoudl be returned. The
-#'     default is \code{FALSE}.
-#' @param std Logical. Whether or not the measurements of occupancy and abundance are to be standardized
-#'     before calculating the dissimilarities. Measurements are standardized for each variable (column),
-#'     by subtracting the variable's mean value and dividing by the variable's mean absolute deviation.
-#'     It only takes effect if \code{diss} is different from "gower".
-#' @param wgts an optional numeric vector of length 2. To be used if diss = "gower", specifying weights
-#'     for occupancy and abundance, respectively. Default is 1 each as in Gower's original formula.
-#' @param ... Arguments to be passed to function \code{fanny} in package \code{cluster}.
-#' @return A list of class \code{fuzzyq} containing the following:
-#' \describe{
+#' Perform fuzzy clustering of each species based on their abundance and
+#' occupancy.
+#' @param M A matrix or data frame of species abundances (columns). Each row
+#'   represents a site.
+#' @param diss String. Specify the dissimilarity coefficient to be used. Default
+#'   is "gower". See \code{\link[cluster]{daisy}} in package \code{cluster} for
+#'   other choices.
+#' @param rm.absent Logical. Whether or not absent species are to be removed
+#'   from the calculations.
+#' @param sorting Logical. If \code{TRUE} (the default) species are sorted in
+#'   the output by ascending silhouette widths within each cluster, else species
+#'   are arranged in the same order as in the input matrix or data frame.
+#' @param keep.Diss Logical. Whether or not the species dissimilarity matrix
+#'   shoudl be returned. The default is \code{FALSE}.
+#' @param std Logical. Whether or not the measurements of occupancy and
+#'   abundance are to be standardized before calculating the dissimilarities.
+#'   Measurements are standardized for each variable (column), by subtracting
+#'   the variable's mean value and dividing by the variable's mean absolute
+#'   deviation. It only takes effect if \code{diss} is different from "gower".
+#' @param wgts an optional numeric vector of length 2. To be used if diss =
+#'   "gower", specifying weights for occupancy and abundance, respectively.
+#'   Default is 1 each as in Gower's original formula.
+#' @param ... Arguments to be passed to function \code{fanny} in package
+#'   \code{cluster}.
+#' @export
+#' @return A list of class \code{fuzzyq} containing the following: \describe{
 #'   \item{\code{A_O}}{Abundance-occupancy information for each species.}
-#'   \item{\code{Diss}}{Object of class dist with pairwise dissimilarities among species based on A_O.
-#'   (only if \code{keep.Diss = TRUE)}.}
-#'   \item{\code{spp}}{Clustering metrics per species: Cluster membership (where 0 and 1 denote allocation
-#'    to the rare and common category, respectively), Silhouette Widths and Commonness Indices).}
-#'   \item{\code{global}}{Community level clustering metrics: Average silhouette widths per cluster and globally,
-#'    Mean commonness indices per cluster and Normalized Dunn's coefficient.}
-#' }
-#' @seealso
-#' \code{\link[cluster]{fanny}} and \code{\link[cluster]{daisy}} within \code{cluster}
+#'   \item{\code{Diss}}{Object of class dist with pairwise dissimilarities among
+#'   species based on A_O. (only if \code{keep.Diss = TRUE)}.}
+#'   \item{\code{spp}}{Clustering metrics per species: Cluster membership (where
+#'   0 and 1 denote allocation to the rare and common category, respectively),
+#'   Silhouette Widths and Commonness Indices).} \item{\code{global}}{Community
+#'   level clustering metrics: Average silhouette widths per cluster and
+#'   globally, Mean commonness indices per cluster and Normalized Dunn's
+#'   coefficient.} }
+#' @seealso \code{\link[cluster]{fanny}} and \code{\link[cluster]{daisy}} in
+#' package \code{cluster}
 #' @examples
 #' data(antsA)
 #' FQAnts <- fuzzyq(antsA, sorting = TRUE)

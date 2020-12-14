@@ -5,24 +5,21 @@
 \alias{Japan}
 \title{Helminth communities of so-iuy mullets from the Japan Sea}
 \format{
-A data frame with 192 rows and 22 variables:
-\describe{
-  \item{sample}{survey identifier}
-  \item{Ssp1}{abundance (no. individuals) of \emph{Solostamenides} sp. 1}
-  \item{...}{See source for full list of species and survey identifiers}
-}
+A data frame with 192 rows and 22 columns. The first column (sample)
+    is a survey identifier. The remaining columns correspond to species
+    abundances. See source for species abbreviations and survey identifiers.
 }
 \source{
 Llopis-Belenguer, C. (2019) Replication data for: Native and invasive hosts
-play different roles in host-parasite networks, Harvard Dataverse,
-\url{https://doi.org/10.7910/DVN/IWIKOL}
+    play different roles in host-parasite networks, Harvard Dataverse,
+    \url{htpps://doi.org/10.7910/DVN/IWIKOL}.
 }
 \usage{
 data(Japan)
 }
 \description{
-A dataset containing the abundance of 21 helminth species from 192 so-iuy
-mullets collected in the Japan Sea. Fish are grouped in seven surveys
+Abundance of 21 helminth species from 192 so-iuy mullets collected in the
+    Japan Sea. Fish are grouped in seven surveys.
 }
 \examples{
 data(Azov)
@@ -38,8 +35,8 @@ global.japan <- t(sapply(fuzzyq.japan, function(x) x$global))
 }
 \references{
 Llopis-Belenguer, C., Blasco-Costa, I., Balbuena, J.A.,
-Sarabeev, V., Stouffer, D.B. (2020), Native and invasive hosts play
-different roles in host-parasite networks. Ecography, 43: 559-568.
-doi:10.1111/ecog.04963
+    Sarabeev, V., Stouffer, D.B. (2020), Native and invasive hosts play
+    different roles in host-parasite networks. Ecography, 43: 559-568.
+    doi: 10.1111/ecog.04963.
 }
 \keyword{datasets}
