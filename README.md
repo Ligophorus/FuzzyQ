@@ -6,7 +6,7 @@ Fuzzy Quantification of Common and Rare Species in Ecological Communities (Fuzzy
 <p> FuzzyQ produces ecological indicators easy to measure and interpret that can give both clear, actionable insights into the nature of ecological communities and provides a powerful way to monitor environmental change on ecosystems. Comparison among communities is greatly facilitated by the fact that the method is relatively independent of the number of sites or sampling units considered. FuzzyQ works satisfactorily with a wide range of communities varying in species richness, dispersion and abundance currencies. </p>
 <p> The development version of FuzzyQ can be installed in R with the <code>devtools</code> package:</p>
 <code>       
-        library(devtools)<br>
-        install_github("Ligophorus/FuzzyQ")<br>
+        <p> library(devtools) </p>
+        <p> install_github("Ligophorus/FuzzyQ") </p>
 </code>
 <p> See also https://ligophorus.github.io/FuzzyQ/ </p>
