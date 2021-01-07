@@ -1,22 +1,23 @@
 Package: FuzzyQ
 Version: 0.1.0
 Date: 2020-12-10
-Title: Fuzzy Quantification of Common and Rare Species in Ecological Communities
-Description: This package performs fuzzy classification of species in an ecological
-    community as common or rare based on their abundance and occupancy. It also
-    includes functions to compute confidence intervals of classification metrics and
-    plot results.
-Author: Juan A. Balbuena,
-    Clara Monlleó-Borrull, 
-    Cristina Llopis-Belenguer,
-    Isabel Blasco-Costa,
-    Volodimir Sarabeev,
-    Serge Morand
-Maintainer: Juan A. Balbuena <j.a.balbuena@uv.es>
+Title: Fuzzy Quantification of Common and Rare Species
+Authors@R: c(person("Juan A.", "Balbuena", role = c("aut", "cre", "cph"), email = "j.a.balbuena@uv.es", comment = c(ORCID = "0000-0003-4006-1353")),
+  person("Clara", "Monlleó-Borrull", role = c("aut", "cph")),
+  person("Cristina", "Llopis-Belenguer", role = c("aut", "cph"), comment = c(ORCID = "0000-0001-7672-0088")),
+  person("Isabel", "Blasco-Costa", role = c("aut", "cph"), comment = c(ORCID = "0000-0002-5001-5986")),
+  person("Volodimir", "Saraveeb", role = c("aut", "cph"), comment = c(ORCID = "0000-0003-4724-3141")),
+  person("Serge", "Morand", role = c("aut", "cph"), comment = c(ORCID = "0000-0003-3986-7659"))
+  )
+Description: Fuzzy clustering of species in an ecological community as common or
+    rare based on their abundance and occupancy. It also includes functions to
+    compute confidence intervals of classification metrics and plot results. See
+    Balbuena et al. (2020, <doi:10.1101/2020.08.12.247502>).
 Depends: R (>= 3.5.0)
 Imports:
     cluster
 License: GPL-3
+URL: https://ligophorus.github.io/FuzzyQ/
 Encoding: UTF-8
 NeedsCompilation: no
 LazyData: true

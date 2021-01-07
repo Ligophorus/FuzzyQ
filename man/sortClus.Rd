@@ -25,22 +25,22 @@ data(antsA)
 FQAnts <- fuzzyq(antsA, sorting = TRUE)
 # Compute species Commonness Indices of species of 1,000 bootstrap
 # replicates:
-\dontrun{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
+\donttest{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
 
 # Compute 95 \% confidence intervals, percentile method, default values:
-\dontrun{BS.sppCI1 <- fuzzyqCI(BS.FQAnts)}
+\donttest{BS.sppCI1 <- fuzzyqCI(BS.FQAnts)}
 
 # Plot Commonness Indices and their respective confidence intervals:
-\dontrun{BS.sppCI1 <- sortClus(BS.sppCI1, FQAnts)}
+\donttest{BS.sppCI1 <- sortClus(BS.sppCI1, FQAnts)}
 spp <- FQAnts$spp
 col.RC <- c("brown2", "turquoise3") # two colors to plot rare and common
-
 # species
-\dontrun{plot(spp[, 3], cex.axis = 0.8, xaxt= 'n', ylab = "Commoness index",
+\donttest{plot(spp[, 3], cex.axis = 0.8, xaxt= 'n', ylab = "Commoness index",
    ylim = c(0, max(BS.sppCI1)), xlab = "Species", col = col.RC[spp[, 1] + 1],
    pch = 16, cex = 0.8, las = 1)
 ebar.int <- seq_len(nrow(spp))
 arrows(ebar.int, BS.sppCI1["Lower", ], ebar.int, BS.sppCI1["Upper", ],
    length= 0, col = col.RC[spp[, 1] + 1])
 axis(1, at = ebar.int, labels = rownames(spp), las = 2, cex.axis = 0.6)}
+
 }

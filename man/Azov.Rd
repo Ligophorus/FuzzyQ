@@ -12,7 +12,7 @@ A data frame with 378 rows and 26 columns. The first column (sample)
 \source{
 Llopis-Belenguer, C. (2019) Replication data for: Native and invasive hosts
     play different roles in host-parasite networks, Harvard Dataverse,
-    \url{https://doi.org/10.7910/DVN/IWIKOL}.
+    \doi{10.7910/DVN/IWIKOL}.
 }
 \usage{
 data(Azov)
@@ -37,6 +37,6 @@ global.azov <- t(sapply(fuzzyq.azov, function(x) x$global))
 Llopis-Belenguer, C., Blasco-Costa, I., Balbuena, J.A.,
     Sarabeev, V., Stouffer, D.B. (2020), Native and invasive hosts play
     different roles in host-parasite networks. Ecography, 43: 559-568.
-    doi: 10.1111/ecog.04963.
+    \doi{10.1111/ecog.04963}.
 }
 \keyword{datasets}

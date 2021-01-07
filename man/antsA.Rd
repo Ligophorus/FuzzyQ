@@ -13,7 +13,7 @@ Calatayud, J., Andivia, E., Escudero, A., Melian, C. J.,
 Bernardo-Madrid, R., Stoffel, M., ... , Madrigal-Gonzalez, J.(2019) Positive
 associations among rare species and their persistence in ecological
 assemblages. Nature Ecology & Evolution, 4: 40-45.
-    \url{https://doi.org/10.6084/m9.figshare.9906092}.
+    \doi{10.6084/m9.figshare.9906092}.
 }
 \usage{
 data(antsA)
@@ -31,6 +31,6 @@ FQAnts <- fuzzyq(antsA, sorting = TRUE)
 Arnan, X., Gaucherel, C., Andersen, A. N. (2011) Dominance and
 species co-occurrence in highly diverse ant communities: a test of the
 interstitial hypothesis and discovery of a three-tiered competition cascade.
-Oecologia, 166: 783-794. doi: 10.1007/s00442-011-1919-y.
+Oecologia, 166: 783-794. \doi{10.1007/s00442-011-1919-y}.
 }
 \keyword{datasets}

@@ -62,8 +62,8 @@ FQAnts <- fuzzyq(antsA, sorting = TRUE)
 
 # Compute species Commonness Indices of species of 1,000 bootstrap
 # replicates:
-\dontrun{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
+\donttest{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
 
 # Compute global metrics of 1,000 boostrap replicates:
-\dontrun{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
+\donttest{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
 }

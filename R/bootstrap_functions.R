@@ -37,10 +37,10 @@
 #'
 #' # Compute species Commonness Indices of species of 1,000 bootstrap
 #' # replicates:
-#' \dontrun{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
+#' \donttest{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
 #'
 #' # Compute global metrics of 1,000 boostrap replicates:
-#' \dontrun{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
+#' \donttest{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
 fuzzyqBoot <- function(M, N = 1e3, level="spp", std = FALSE, rm.absent = FALSE,
                        wgts = c(1,1), ...) {
   if (length(dim(M)) != 2 || !(is.data.frame(M) || is.numeric(M)))
@@ -69,6 +69,8 @@ fuzzyqBoot <- function(M, N = 1e3, level="spp", std = FALSE, rm.absent = FALSE,
   sum.nulls <- sum(null.control, na.rm = TRUE)
   if (sum.nulls == N) stop("All replicates contained too few species
                            for fuzzy clustering.")
+  old <- options()
+  on.exit(options(old))
   if (sum.nulls > 0 && sum.nulls < N) {
     null.replicates <- which(null.control == TRUE)
     M <- M[-null.replicates]
@@ -138,20 +140,21 @@ fuzzyqBoot <- function(M, N = 1e3, level="spp", std = FALSE, rm.absent = FALSE,
 #'
 #' # Compute species Commonness Indices of species of 1,000 bootstrap
 #' # replicates:
-#' \dontrun{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
+#' \donttest{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
 #'
 #' # Compute 95 % confidence intervals, percentile method, default values:
-#' \dontrun{BS.sppCI1 <- fuzzyqCI(BS.FQAnts)}
+#' \donttest{BS.sppCI1 <- fuzzyqCI(BS.FQAnts)}
 #'
 #' # Alternatively, 95 % confidence intervals, bias corrected and accelerated
 #' # method:
-#' \dontrun{BS.sppCI2 <- fuzzyqCI(BS.FQAnts, fq=FQAnts, method = "bca")}
+#' \donttest{BS.sppCI2 <- fuzzyqCI(BS.FQAnts, fq=FQAnts, method = "bca")}
 #'
 #' # Compute global metrics of 1,000 boostrap replicates:
-#' \dontrun{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
+#' \donttest{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
 #'
 #' # Compute 95 % confidence intervals, bias corrected and accelerated method:
-#' \dontrun{BS.globalCI <- fuzzyqCI(BS.global, fq=FQAnts, method = "bca")}
+#' \donttest{BS.globalCI <- fuzzyqCI(BS.global, fq=FQAnts, method = "bca")}
+#'
 fuzzyqCI <- function(fq.bs, fq = NULL, method = "pct", c.level = 0.95) {
   M <- fq.bs$fq.rep
   if (!(is.data.frame(M) || is.numeric(M)))

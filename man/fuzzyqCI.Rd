@@ -33,18 +33,19 @@ FQAnts <- fuzzyq(antsA, sorting = TRUE)
 
 # Compute species Commonness Indices of species of 1,000 bootstrap
 # replicates:
-\dontrun{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
+\donttest{BS.FQAnts <- fuzzyqBoot (antsA, N = 1e3, level='spp')}
 
 # Compute 95 \% confidence intervals, percentile method, default values:
-\dontrun{BS.sppCI1 <- fuzzyqCI(BS.FQAnts)}
+\donttest{BS.sppCI1 <- fuzzyqCI(BS.FQAnts)}
 
 # Alternatively, 95 \% confidence intervals, bias corrected and accelerated
 # method:
-\dontrun{BS.sppCI2 <- fuzzyqCI(BS.FQAnts, fq=FQAnts, method = "bca")}
+\donttest{BS.sppCI2 <- fuzzyqCI(BS.FQAnts, fq=FQAnts, method = "bca")}
 
 # Compute global metrics of 1,000 boostrap replicates:
-\dontrun{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
+\donttest{BS.global <- fuzzyqBoot (antsA, N = 1e3, level='global')}
 
 # Compute 95 \% confidence intervals, bias corrected and accelerated method:
-\dontrun{BS.globalCI <- fuzzyqCI(BS.global, fq=FQAnts, method = "bca")}
+\donttest{BS.globalCI <- fuzzyqCI(BS.global, fq=FQAnts, method = "bca")}
+
 }
