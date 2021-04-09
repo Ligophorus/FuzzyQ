@@ -8,5 +8,5 @@ Fuzzy Quantification of Common and Rare Species in Ecological Communities (Fuzzy
 <h3> Reference </h3>
 <p>Balbuena, JA, Monlleó-Borrull, C, Llopis-Belenguer, C, Blasco-Costa, I, Sarabeev, VL, Morand, S. Fuzzy quantification of common and rare species in ecological communities (FuzzyQ). Methods Ecol Evol. https://doi.org/10.1111/2041-210X.13588 </p>
 <h3> Citation </h3>
-<p> Cite this data and/ or code as: </p>
+<p> Cite this code as: </p>
 <p> Balbuena, J. A., Monlleó-Borrull, C., Llopis-Belenguer, C., Blasco-Costa, I., Sarabeev, V. L., & Morand, S. (2021). Code for fuzzy quantification of common and rare species in ecological communities (version v1.0). Zenodo. https://doi.org/10.5281/zenodo.4469291 </p>
