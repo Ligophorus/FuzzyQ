@@ -1,4 +1,4 @@
-<img align="right" src="images/FuzzyQLogo.png">
+<img align="left" width="200" src="images/FuzzyQLogo.png">
 
 ## Fuzzy Quantification of Common and Rare Species in Ecological Communities 
 #### Juan A. Balbuena[&#x1f4e7;](mailto:j.a.balbuena@uv.es), Clara Monlleó-Borrull, Cristina Llopis-Belenguer, Isabel Blasco-Costa, Volodimir L. Sarabeev, Serge Morand
