@@ -1,4 +1,4 @@
-![](./images/FuzzyLogo.png)
+![](images/FuzzyQLogo.png)
 ## Fuzzy Quantification of Common and Rare Species in Ecological Communities 
 #### Juan A. Balbuena[&#x1f4e7;](mailto:j.a.balbuena@uv.es), Clara Monlleó-Borrull, Cristina Llopis-Belenguer, Isabel Blasco-Costa, Volodimir L. Sarabeev, Serge Morand
 <p> Most species in ecological communities are rare whereas only a few are common. Although this distributional paradox has intrigued ecologists for decades, the interpretation of species abundance distributions remains elusive. 
